@@ -1,9 +1,9 @@
 exports.db = (mysql)=>{    
     const db = mysql.createConnection({
-        host:"localhost",
-        user:"root",
-        password:"speed",
-        database:"consultaion"
+        host:"online.cafe24app.com",
+        user:"gmas357",
+        password:"skdlwlfldk357",
+        database:"gmas357"
     });
     return db;
 }
