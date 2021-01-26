@@ -1,0 +1,185 @@
+.after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.content_container_extend {
+  width: 1700px;
+  height: 2000px;
+  float: right;
+  margin-top: 60px;
+}
+
+.content_container_extend body, .content_container_extend html {
+  height: 100%;
+}
+
+.paging_box, .long_table_box .paging_box {
+  width: auto;
+  height: 30px;
+  margin: 30px auto;
+  text-align: center;
+  line-height: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.paging_box span, .long_table_box .paging_box span {
+  padding: 4px 10px;
+  border: 1px solid #dddddd;
+  float: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.paging_box span:hover {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  background-color: #eeeeee;
+}
+
+.paging_box .prev img {
+  width: 10px;
+  margin-top: 5px;
+}
+
+.paging_box .next img {
+  width: 10px;
+  margin-top: 5px;
+}
+
+.title_text {
+  margin: 20px;
+  font-size: 24px;
+  color: #797979;
+  font-weight: normal;
+  letter-spacing: -1px;
+}
+
+.title_text img {
+  margin-right: 10px;
+}
+
+.login_list_box {
+  width: 90%;
+  background-color: white;
+  margin: 0 auto;
+}
+
+.login_list_box .search_box {
+  padding: 20px 0px;
+  -webkit-box-shadow: #afb6c0 0px 4px 5px;
+          box-shadow: #afb6c0 0px 4px 5px;
+  width: 100%;
+}
+
+.login_list_box .search_box table {
+  width: 90%;
+  border: 1px solid #cccccc;
+  border-collapse: collapse;
+  margin: 20px auto 10px;
+}
+
+.login_list_box .search_box table thead tr {
+  height: 40px;
+}
+
+.login_list_box .search_box table thead tr td {
+  border-right: 1px solid #cccccc;
+}
+
+.login_list_box .search_box table thead tr td select {
+  border: 1px solid #cccccc;
+  padding: 5px 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+  color: #444444;
+}
+
+.login_list_box .search_box table thead tr td input {
+  height: 25px;
+  border: 1px solid #cccccc;
+  outline: none;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.login_list_box .search_box table thead tr td:nth-of-type(odd) {
+  color: #7e7e7e;
+  background-color: #f2f2f2;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.login_list_box .search_box span {
+  margin-left: 80px;
+  font-size: 12px;
+  color: #7e7e7e;
+}
+
+.login_list_box .search_box .reset_btn {
+  padding: 5px 20px;
+  border: 1px solid tomato;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  float: right;
+  margin-right: 80px;
+}
+
+.login_list_box .search_box .search_btn {
+  float: right;
+  margin-right: 10px;
+  padding: 5px 20px;
+  border: 1px solid #397fbb;
+  background-color: #3372a7;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.long_table_box {
+  width: 90%;
+  margin: 10px auto;
+  background-color: white;
+  -webkit-box-shadow: #afb6c0 0px 4px 5px;
+          box-shadow: #afb6c0 0px 4px 5px;
+  padding: 10px 0px 200px;
+  text-align: center;
+}
+
+.long_table_box table {
+  width: 90%;
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid #dddddd;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #897979;
+}
+
+.long_table_box table tr {
+  height: 30px;
+}
+
+.long_table_box table tr td {
+  border: 1px solid #dddddd;
+}
+
+.long_table_box table thead tr {
+  background-color: #dff0d9;
+  font-weight: bold;
+}
+
+.long_table_box table tbody tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.long_table_box table tbody tr td:nth-of-type(1) a {
+  color: #2d6594;
+}

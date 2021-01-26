@@ -1,0 +1,50 @@
+.after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.content_container_extend {
+  width: 1700px;
+  height: 2000px;
+  float: right;
+  margin-top: 60px;
+}
+
+.content_container_extend body, .content_container_extend html {
+  height: 100%;
+}
+
+.paging_box {
+  width: auto;
+  height: 30px;
+  margin: 30px auto;
+  text-align: center;
+  line-height: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.paging_box span {
+  padding: 4px 10px;
+  border: 1px solid #dddddd;
+  float: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.paging_box span:hover {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  background-color: #eeeeee;
+}
+
+.paging_box .prev img {
+  width: 10px;
+  margin-top: 5px;
+}
+
+.paging_box .next img {
+  width: 10px;
+  margin-top: 5px;
+}

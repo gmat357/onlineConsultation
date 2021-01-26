@@ -1,0 +1,49 @@
+.after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.content_container_extend{
+    body,html{
+        height:100%;
+    }
+    
+    width:1700px;
+    height:2000px;
+    float:right;
+    margin-top:60px;
+}
+
+.paging_box{
+    width:auto;
+    height:30px;
+    margin:30px auto;
+    text-align:center;
+    line-height:20px;
+    position: relative;
+    display:inline-block;
+    span{
+        padding:4px 10px;
+        border:1px solid #dddddd;
+        float:left;
+        cursor: pointer;
+        font-size:14px;
+        &:hover{
+            transition-duration:0.3s;
+            background-color:#eeeeee;
+        }
+    }
+    .prev{
+        img{
+            width:10px;
+            margin-top:5px;
+        }
+    }
+    .next{
+        img{
+            width:10px;
+            margin-top:5px;
+        }
+    }
+}

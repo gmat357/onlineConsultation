@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+.after::after, .header_container .logo::after, .header_container .user_info::after, .header_container .user_info li::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.header_container {
+  width: 1920px;
+  height: 60px;
+  background-color: #a8a8a8;
+  text-shadow: #c5c5c5 1px 1px 1px;
+  position: fixed;
+  z-index: 1000;
+}
+
+.header_container .logo {
+  width: 400px;
+  height: 60px;
+  float: left;
+  line-height: 55px;
+}
+
+.header_container .logo a {
+  font-size: 20px;
+  color: white;
+  margin-left: 50px;
+  font-weight: bold;
+}
+
+.header_container .user_info {
+  float: right;
+}
+
+.header_container .user_info li {
+  float: left;
+  margin: 18px 10px;
+  color: white;
+  font-size: 14px;
+}
+
+.header_container .user_info li span, .header_container .user_info li a {
+  border: 1px solid #cccccc;
+  padding: 5px 5px;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.header_container .user_info li span:hover, .header_container .user_info li a:hover {
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  background-color: #757575;
+}
+
+.header_container .user_info li:last-of-type {
+  margin-right: 30px;
+}

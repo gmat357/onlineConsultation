@@ -1,0 +1,97 @@
+.form_box{
+    width:100%;
+    background-color:white;
+    form{
+        width:70%;
+        margin:50px 260px;
+        display:inline-block;
+        box-shadow: #cccccc 1px 1px 5px;
+
+        h4{
+            color:white;
+            font-size:20px;
+            font-weight:normal;
+            padding:15px 25px;
+            background-color:#5b90b6;
+        }
+        table{
+            width:90%;
+            margin:20px auto;
+            border-collapse: collapse;
+            text-align:center;
+            background-color:white;
+            border:1px solid #cccccc;
+            thead{
+                tr{
+                    height:50px;
+                    td{
+                        border:1px solid #cccccc;
+                        font-size:14px;
+                        input,select,textarea{
+                            width:360px;
+                            height:30px;
+                            border:1px solid #cccccc;
+                            border-radius: 5px;
+                            outline: none;
+                            box-shadow: inset #dbdbdb 0 0 1px;
+                            padding-left:10px;
+                            &:focus{
+                                border:1px solid #69b0e7;
+                                box-shadow: #444444 0 0 1px;
+                                transition-duration: 0.5s;
+                            }
+                        }
+                        textarea{
+                            width:800px;
+                            height:300px;
+                            text-align:left;
+                            padding:15px;
+                        }
+                    }
+                    td:nth-of-type(odd){
+                        background-color:#f5f5f5;
+                        font-weight:bold;
+                        color:#858585;
+                    }
+                    td:nth-of-type(even){
+                        text-align:left;
+                        padding-left:5px;
+                        color:#858585;
+                    }
+                }
+            }
+        }
+        .btn_box{
+            width:100%;
+            height:50px;
+            border-top:1px solid #cccccc;
+            a,input[type=submit]{
+                float:right;
+                color:white;
+                background-color:#468cc8;
+                margin-right:5px;
+                padding:5px 20px;
+                margin-top:10px;
+                border:1px solid #cccccc;
+                border-radius: 5px;
+                font-size:14px;
+                &:hover{
+                    background-color:#337ea7;
+                }
+            }
+            a:first-of-type{
+                background-color:white;
+                color:black;
+                &:hover{
+                    background-color:#e6e6e6;
+                }
+            }
+            a:last-of-type{
+                background-color:#d75152;
+                &:hover{
+                    background-color:#c72731;
+                }
+            }
+        }
+    }
+}
