@@ -1,4 +1,4 @@
-exports.consultingUpdate = (rows, consultantData)=>{
+exports.content = (rows, consultantData)=>{
 
     let consultant_result = "";
     for(let i = 0; i < consultantData.length; i++){

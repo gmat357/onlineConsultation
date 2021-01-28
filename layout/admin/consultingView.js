@@ -1,4 +1,4 @@
-exports.consultingView = (rows)=>{
+exports.content = (rows)=>{
     const template = `
     <article class="content_container">
         <div class="form_box">

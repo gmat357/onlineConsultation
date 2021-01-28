@@ -9,20 +9,24 @@ const mysql = require('mysql');
 const db_setting = require('../../mysql/index');
 const db = db_setting.db(mysql);
 
-const nav = require('../../layout/admin/nav');
-const header = require('../../layout/admin/header');
-const main = require('../../layout/admin/main');
-const footer = require('../../layout/admin/footer');
+var render = require('../../function/render');
+const flash = require('connect-flash');
+const passport = require('passport');
+//  passport router module
+
+//  express-session module
+const session = require('express-session');
+router.use(flash());
+//  express-session setting
+router.use(session({secret:'keyboard cat', resave:true, saveUninitialized:false}));
+
+//  passport session loading
+router.use(passport.initialize());
+router.use(passport.session());
 
 router.get('/admin',(req,res)=>{
-    const render = {
-        nav:nav.nav(),
-        header:header.header(),
-        content:main.main(),
-        footer:footer.footer(),
-        css:"adminMain"
-    }
-    res.render('adminMain',render);
+    console.log(req.user);
+    res.render('adminMain',render.render("adminMain"));
 });
 
 module.exports = router;

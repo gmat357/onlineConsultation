@@ -15,28 +15,15 @@ const bcrypt = require('bcrypt-nodejs');
 const db_setting = require('../../mysql/index');
 const db = db_setting.db(mysql);
 
-const nav = require('../../layout/admin/nav');
-const header = require('../../layout/admin/header');
-const consultingList = require('../../layout/admin/consultingList');
-const consultingView = require('../../layout/admin/consultingView');
-const consultingUpdate = require('../../layout/admin/consultingUpdate');
-const footer = require('../../layout/admin/footer');
+var render = require('../../function/render');
 
 const date = require('../../function/date');
-const { render } = require('ejs');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
 
 router.get('/consultingList',(req,res)=>{
-    const render = {
-        nav:nav.nav(),
-        header:header.header(),
-        content:consultingList.consultingList(),
-        footer:footer.footer(),
-        css:"consultingList"
-    }
-    res.render('adminMain',render);
+    res.render('adminMain',render.render("consultingList"));
 });
 
 router.get('/consulting_list',(req,res)=>{
@@ -98,14 +85,7 @@ router.post('/consultingJoin', (req,res)=>{
 router.get('/consultingList/:page',(req,res)=>{
     db.query("select * from `consulting_list`",(err,rows)=>{
         if(err) throw err;
-        const render = {
-            header:header.header(),
-            nav:nav.nav(),
-            content:consultingView.consultingView(rows),
-            footer:footer.footer(),
-            css:"consultingView",
-        };
-        res.render('adminMain',render);
+        res.render('adminMain',render.render("consultingView",rows));
     });
 });
 
@@ -115,14 +95,7 @@ router.get('/consultingList/update/:page',(req,res)=>{
         if(err) throw err;
         db.query('select * from `consultant_list`',(err2, rows2)=>{
             if(err2) throw err2;
-            const render = {
-                header:header.header(),
-                nav:nav.nav(),
-                content:consultingUpdate.consultingUpdate(rows,rows2),
-                footer:footer.footer(),
-                css:"consultingView",
-            };
-            res.render('adminMain',render);
+            res.render('adminMain',render.render("consultingView",rows,rows2));
         })
     });
 });

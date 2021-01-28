@@ -1,4 +1,4 @@
-exports.consultantList = ()=>{
+exports.content = ()=>{
     const template = `
     <div class="join_box">
         <form action="/consultantJoin" method="post">

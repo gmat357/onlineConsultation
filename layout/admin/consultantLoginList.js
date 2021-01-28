@@ -1,4 +1,4 @@
-exports.consultantLoginList = ()=>{
+exports.content = ()=>{
     const template = `
     <article class="content_container">
     <h3 class="title_text"><img src="../public/img/admin/main/hb_silver.png" alt="메뉴 아이콘"> 상담원 로그인 리스트</h3>

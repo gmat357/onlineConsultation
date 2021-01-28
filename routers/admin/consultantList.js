@@ -15,10 +15,7 @@ const bcrypt = require('bcrypt-nodejs');
 const db_setting = require('../../mysql/index');
 const db = db_setting.db(mysql);
 
-const nav = require('../../layout/admin/nav');
-const header = require('../../layout/admin/header');
-const consultantList = require('../../layout/admin/consultantList');
-const footer = require('../../layout/admin/footer');
+var render = require('../../function/render');
 
 const date = require('../../function/date');
 
@@ -26,14 +23,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
 
 router.get('/consultantList',(req,res)=>{
-    const render = {
-        nav:nav.nav(),
-        header:header.header(),
-        content:consultantList.consultantList(),
-        footer:footer.footer(),
-        css:"consultantList"
-    }
-    res.render('adminMain',render);
+    res.render('adminMain',render.render("consultantList"));
 });
 
 router.get('/consultant_list',(req,res)=>{

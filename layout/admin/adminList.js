@@ -1,4 +1,4 @@
-exports.adminList = ()=>{
+exports.content = ()=>{
     const template = `
     <div class="join_box">
         <form action="/adminJoin" method="post">
