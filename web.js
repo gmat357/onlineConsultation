@@ -19,7 +19,7 @@ app.use(session({secret:'keyboard cat', resave:true, saveUninitialized:false}));
 const path = require('path');
 
 //  port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 //  req.user.name 값가져오기 까지함 header부분 수정해야됨
 

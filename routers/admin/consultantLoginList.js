@@ -1,18 +1,21 @@
-//  express
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
 
-//  mysql
-const mysql = require('mysql');
-
-//  db setting
-const db_setting = require('../../mysql/index');
-const db = db_setting.db(mysql);
-
+//  function
 var render = require('../../function/render');
 
+// setting
+var db_setting = require('../../mysql/index');
+var db = db_setting.db(mysql);
+
 router.get('/consultantLoginList',(req,res)=>{
-    res.render('adminMain',render.render("consultantLoginList"));
+    if(!req.user){
+        res.redirect('/adminLogin');
+    }else{
+        var user = req.user;
+        res.render('adminMain',render.render(user,"consultantLoginList"));
+    }
 });
 
 router.get('/consultant_login_list',(req,res)=>{

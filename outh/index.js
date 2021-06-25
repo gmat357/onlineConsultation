@@ -88,18 +88,27 @@ router.post('/admin/loginAction', passport.authenticate('local', {failureRedirec
 
     var id = req.user.id;
     var name = req.user.name;
+    var auth = req.user.auth;
     var day = require('../function/date').date();
     var ip = requestIp.getClientIp(req);
     let sql = {id:id,name:name,login_date:day,ip:ip};
+
     db.query("select * from `admin_list` where id = ?",id,(err, rows)=>{
         if(err) throw err;
-        var login_cnt = {login_count : Number(rows[0].login_count) + 1};
+        var login_cnt = {login_count : Number(rows[0].login_count) + 1,last_login:day};
         db.query('update `admin_list` set ? where id = ?',[login_cnt,id]);
     });
-    db.query('insert into `admin_login_list` set ?',sql,(err,rows)=>{
-        if(err) throw err;
-        res.redirect('/admin'); 
-    });
+    if(auth == "관리자"){ 
+        db.query('insert into `admin_login_list` set ?',sql,(err,rows)=>{
+            if(err) throw err;
+            res.redirect('/admin'); 
+        });
+    }else if(auth == "상담원"){
+        db.query('insert into `consultant_login_list` set ?',sql,(err,rows)=>{
+            if(err) throw err;
+            res.redirect('/admin'); 
+        });
+    }
 });
 
 router.get('/admin/logout',(req,res)=>{

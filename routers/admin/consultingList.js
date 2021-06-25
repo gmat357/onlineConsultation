@@ -1,33 +1,29 @@
-//  express
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
+var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt-nodejs');
 
-//  mysql
-const mysql = require('mysql');
-
-//  body-parser
-const bodyParser = require('body-parser');
-
-//  bcrypt module
-const bcrypt = require('bcrypt-nodejs');
-
-//  db setting
-const db_setting = require('../../mysql/index');
-const db = db_setting.db(mysql);
-
+//  function
 var render = require('../../function/render');
+var date = require('../../function/date');
 
-const date = require('../../function/date');
-
+//  setting
+var db_setting = require('../../mysql/index');
+var db = db_setting.db(mysql);
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
 
 router.get('/consultingList',(req,res)=>{
-    res.render('adminMain',render.render("consultingList"));
+    if(!req.user){
+        res.redirect('/adminLogin');
+    }else{
+        var user = req.user;
+        res.render('adminMain',render.render(user,"consultingList"));
+    }
 });
 
 router.get('/consulting_list',(req,res)=>{
-    console.log("접속");
     db.query('select * from `consulting_list` order by no desc',(err,rows)=>{
         if(err) throw err;
         res.json(rows);
@@ -78,26 +74,36 @@ router.post('/consultingJoin', (req,res)=>{
     db.query('alter table `consulting_list` auto_increment = 1');
     db.query('insert into `consulting_list` set ?',sql,(err, rows)=>{
         if(err) throw err;
-        res.redirect('/admin');
+        res.redirect('/consultingList');
     });
 });
 
 router.get('/consultingList/:page',(req,res)=>{
-    db.query("select * from `consulting_list`",(err,rows)=>{
-        if(err) throw err;
-        res.render('adminMain',render.render("consultingView",rows));
-    });
+    if(!req.user){
+        res.redirect('/adminLogin');
+    }else{
+        var user = req.user;
+        db.query("select * from `consulting_list`",(err,rows)=>{
+            if(err) throw err;
+            res.render('adminMain',render.render(user,"consultingView",rows));
+        });
+    }
 });
 
 router.get('/consultingList/update/:page',(req,res)=>{
-    const page = req.params.page;
-    db.query("select * from `consulting_list` where No = ?",page,(err,rows)=>{
-        if(err) throw err;
-        db.query('select * from `consultant_list`',(err2, rows2)=>{
-            if(err2) throw err2;
-            res.render('adminMain',render.render("consultingView",rows,rows2));
-        })
-    });
+    if(!req.user){
+        res.redirect('/adminLogin');
+    }else{
+        const page = req.params.page;
+        var user = req.user;
+        db.query("select * from `consulting_list` where No = ?",page,(err,rows)=>{
+            if(err) throw err;
+            db.query('select * from `consultant_list`',(err2, rows2)=>{
+                if(err2) throw err2;
+                res.render('adminMain',render.render(user,"consultingView",rows,rows2));
+            });
+        });
+    }
 });
 
 router.post('/consultingList/updateAction/:page',(req,res)=>{

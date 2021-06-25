@@ -1,4 +1,5 @@
-exports.nav = ()=>{
+exports.nav = (auth)=>{
+    if(auth == "관리자"){
     const template = `
     <nav class="nav_container">
         <ul>
@@ -58,6 +59,33 @@ exports.nav = ()=>{
     </nav>  
         <script src="../public/js/admin/nav.js"></script>
     `
-
     return template;
+
+    }else if(auth == "상담원"){
+
+    const template = `
+    <nav class="nav_container">
+        <ul>
+            <li>
+                <img src="../public/img/admin/nav/bottom_arrow.png" alt="화살표 아이콘"> 상담신청관리
+                <ul>
+                    <li>
+                        <img src="../public/img/admin/nav/right_arrow.png" alt="화살표아이콘"> <a href="/consultingList">상담신청 리스트</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <img src="../public/img/admin/nav/bottom_arrow.png" alt="화살표 아이콘"> 내정보관리
+                <ul>
+                    <li>
+                        <img src="../public/img/admin/nav/right_arrow.png" alt="화살표아이콘"> <a href="/">내정보 관리</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>  
+        <script src="../public/js/admin/nav.js"></script>
+    `
+    return template;
+    }
 }

@@ -1,33 +1,30 @@
-//  express
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
+var bodyParser = require('body-parser');
+var bcrypt = require('bcrypt-nodejs');
 
-//  mysql
-const mysql = require('mysql');
-
-//  body-parser
-const bodyParser = require('body-parser');
-
-//  bcrypt module
-const bcrypt = require('bcrypt-nodejs');
-
-//  db setting
-const db_setting = require('../../mysql/index');
-const db = db_setting.db(mysql);
-
+//  function
 var render = require('../../function/render');
+var date = require('../../function/date');
 
-const date = require('../../function/date');
-
+// setting
+var db_setting = require('../../mysql/index');
+var db = db_setting.db(mysql);
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:false}));
 
 router.get('/consultantList',(req,res)=>{
-    res.render('adminMain',render.render("consultantList"));
+    if(!req.user){
+        res.redirect('/adminLogin');
+    }else{
+        var user = req.user;
+        res.render('adminMain',render.render(user,"consultantList"));
+    }
 });
 
 router.get('/consultant_list',(req,res)=>{
-    db.query('select * from `consultant_list` order by no desc',(err,rows)=>{
+    db.query('select * from `admin_list` where auth = ? order by no desc',"상담원",(err,rows)=>{
         if(err) throw err;
         res.json(rows);
     });
@@ -37,10 +34,10 @@ router.post('/consultant_delete_list',(req,res)=>{
     let jsonData = req.body.undefined;
     if(Array.isArray(jsonData)){
         for(let i = 0; i < jsonData.length; i++){
-            db.query('delete from `consultant_list` where No = ?',jsonData[i]);
+            db.query('delete from `admin_list` where No = ?',jsonData[i]);
         }
     }else{
-        db.query('delete from `consultant_list` where No = ?', jsonData);
+        db.query('delete from `admin_list` where No = ?', jsonData);
     }
     
     res.redirect('/adminlist');
@@ -69,9 +66,10 @@ router.post('/consultantJoin', (req,res)=>{
             insert_date:day,
             login_count:0,
             last_login:"",
+            auth:"상담원"
         };
-        db.query('alter table `consultant_list` auto_increment = 1');
-        db.query('insert into `consultant_list` set ?',sql,(err, rows)=>{
+        db.query('alter table `admin_list` auto_increment = 1');
+        db.query('insert into `admin_list` set ?',sql,(err, rows)=>{
             if(err) throw err;
             res.redirect('/admin');
         });

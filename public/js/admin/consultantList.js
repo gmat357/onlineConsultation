@@ -148,6 +148,7 @@ function list_data(){
         url:url,
         dataType:dataType,
         success:function(data){
+            console.log(data);
             let $list_object = list_object;
             if(data.length <= 0){
                 template = `

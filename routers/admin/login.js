@@ -6,6 +6,4 @@ router.get('/adminLogin',(req,res)=>{
     res.render('adminLogin');
 });
 
-
-
 module.exports = router;

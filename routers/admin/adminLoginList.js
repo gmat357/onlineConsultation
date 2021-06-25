@@ -1,22 +1,25 @@
-//  express
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
+var mysql = require('mysql');
 
-//  mysql
-const mysql = require('mysql');
-
-//  db setting
-const db_setting = require('../../mysql/index');
-const db = db_setting.db(mysql);
-
+//  function
 var render = require('../../function/render');
 
+//  setting
+var db_setting = require('../../mysql/index');
+var db = db_setting.db(mysql);
+
+
 router.get('/adminLoginList',(req,res)=>{
-    res.render('adminMain',render.render("adminLoginList"));
+    if(!req.user){
+        res.redirect('/adminLogin');
+    }else{
+        var user = req.user;
+        res.render('adminMain',render.render(user,"adminLoginList"));
+    }
 });
 
 router.get('/admin_login_list',(req,res)=>{
-    console.log("접속");
     db.query('select * from `admin_login_list` order by no desc',(err,rows)=>{
         if(err) throw err;
         res.json(rows);
